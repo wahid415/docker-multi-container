@@ -2,7 +2,7 @@ name: Deploy MultiDocker
 on:
   push:
     branches:
-      - main # check your repo, your default branch might be master!
+      - main
 
 jobs:
   build:
@@ -13,12 +13,12 @@ jobs:
       - run: docker build -t rallycoding/react-test -f ./client/Dockerfile.dev ./client
       - run: docker run -e CI=true rallycoding/react-test npm test
 
-      - run: docker build -t rallycoding/multi-client ./client
-      - run: docker build -t rallycoding/multi-nginx ./nginx
-      - run: docker build -t rallycoding/multi-server ./server
-      - run: docker build -t rallycoding/multi-worker ./worker
+      - run: docker build -t mdwahidali/multi-container-client ./client
+      - run: docker build -t mdwahidali/multi-container-nginx ./nginx
+      - run: docker build -t mdwahidali/multi-container-server ./server
+      - run: docker build -t mdwahidali/multi-container-worker ./worker
 
-      - run: docker push rallycoding/multi-client
-      - run: docker push rallycoding/multi-nginx
-      - run: docker push rallycoding/multi-server
-      - run: docker push rallycoding/multi-worker
+      - run: docker push mdwahidali/multi-container-client
+      - run: docker push mdwahidali/multi-container-nginx
+      - run: docker push mdwahidali/multi-container-server
+      - run: docker push mdwahidali/multi-container-worker
